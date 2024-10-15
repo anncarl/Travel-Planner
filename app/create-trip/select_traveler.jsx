@@ -6,9 +6,11 @@ import { TravelListOptions } from "../../constants/Options";
 import OptionsCard from "../../components/createTrip/OptionsCard";
 import { CreateTripContext } from "../../context/CreateTripContext";
 import ButtonFull from "../../components/buttons/ButtonFull";
+import { useRouter } from "expo-router";
 
 export default function SelectTravel() {
   const navigation = useNavigation();
+  const router = useRouter();
 
   const [selectedTraveller, setSelectedTraveller] = useState();
   const { tripData, setTripData } = useContext(CreateTripContext);
@@ -25,12 +27,12 @@ export default function SelectTravel() {
   useEffect(() => {
     setTripData({
       ...tripData,
-      traveller: selectedTraveller,
+      traveller: selectedTraveller?.title,
     });
   }, [selectedTraveller]);
 
   useEffect(() => {
-    console.log(tripData);
+    console.log(JSON.stringify(tripData, null, 2));
   }, [tripData]);
 
   return (
@@ -53,7 +55,12 @@ export default function SelectTravel() {
           )}
         />
       </View>
-      <ButtonFull style={{ marginTop: 20 }}>Continue</ButtonFull>
+      <ButtonFull
+        style={{ marginTop: 20 }}
+        onPress={() => router.push("/create-trip/select_dates")}
+      >
+        Continue
+      </ButtonFull>
     </View>
   );
 }

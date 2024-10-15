@@ -2,12 +2,20 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { Colors } from "../../constants/Colors";
 
-export default function OptionsCard({ option, selectedTraveller }) {
+export default function OptionsCard({
+  option,
+  selectedTraveller,
+  selectedBudget,
+}) {
   return (
     <View
       style={[
         styles.container,
         selectedTraveller?.id == option?.id && {
+          borderWidth: 1,
+          borderColor: Colors.gray,
+        },
+        selectedBudget?.id == option?.id && {
           borderWidth: 1,
           borderColor: Colors.gray,
         },
