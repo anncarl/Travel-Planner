@@ -6,9 +6,11 @@ import { CreateTripContext } from "../../context/CreateTripContext";
 import DetailsCard from "../../components/createTrip/DetailsCard";
 import ButtonFull from "../../components/buttons/ButtonFull";
 import moment from "moment";
+import { useRouter } from "expo-router";
 
 export default function ReviewTrip() {
   const navigation = useNavigation();
+  const router = useRouter();
 
   const { tripData, setTripData } = useContext(CreateTripContext);
 
@@ -42,7 +44,12 @@ export default function ReviewTrip() {
       <DetailsCard icon={"🤑"} title={"Budget"}>
         {tripData?.budget}
       </DetailsCard>
-      <ButtonFull style={{ marginTop: 40 }}>Build my Trip</ButtonFull>
+      <ButtonFull
+        style={{ marginTop: 40 }}
+        onPress={() => router.replace("create-trip/generate_trip")}
+      >
+        Build my Trip
+      </ButtonFull>
     </View>
   );
 }
