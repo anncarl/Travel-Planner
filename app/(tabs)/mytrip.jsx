@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   Pressable,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -68,7 +69,10 @@ export default function MyTrip() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.innerContainer}>
         <Text style={styles.heading}>My Trips</Text>
         <Pressable onPress={() => router.push("/create-trip/search_place")}>
@@ -82,16 +86,17 @@ export default function MyTrip() {
       ) : (
         <UserTripsList userTrips={userTrips} />
       )}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: "#fff",
     padding: 20,
     paddingTop: 65,
+    paddingBottom: 20,
   },
   innerContainer: {
     flexDirection: "row",
