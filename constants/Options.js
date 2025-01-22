@@ -95,7 +95,7 @@ structure should strictly follow this format:
           "place_name": "Name of the place (e.g., 'Spice Tour')",
           "place_details": "Description of the activity or what visitors can expect",
           "geo_coordinates": "Coordinates as a string (latitude, longitude)",
-          "place_image_url": "URL of the place image",
+          "place_image_url": "URL of the place image preferably a high resolution image from google and valid",
           "ticket_pricing": "Cost of tickets as a string or 'Free' if free",
           "best_time_to_visit": "Optimal time to visit (e.g., 'Morning or late afternoon to avoid the heat')",
           "estimated_time": "Estimated duration at the location (e.g., '3-4 hours')"
@@ -108,7 +108,7 @@ structure should strictly follow this format:
 Instructions:
 1. Ensure strict adherence to the format provided for all sections to avoid breaking the output. All fields are required, even if some values are placeholders.
 2. The flight section must include a booking_url, general details, and price.
-3. The hotel section must be an array.
+3. The hotel section must be an array with a list of different hotels to chose from.
 4. The itinerary section must include day-wise plans with all specified details for each location.
 5. In the itinerary please also do not include arrival, departure plans, lunch and dinner plans.
 `;
