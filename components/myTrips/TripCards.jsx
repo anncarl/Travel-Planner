@@ -1,13 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Image } from "react-native";
 import moment from "moment";
 import { Colors } from "../../constants/Colors";
 
-export default function TripCards({ trip }) {
+export default function TripCards({ trip, onPress }) {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Image
         source={{
           uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${trip.tripData?.locationInfo?.photo}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
@@ -15,15 +15,13 @@ export default function TripCards({ trip }) {
         style={styles.image}
       />
       <View style={styles.textConatiner}>
-        <Text style={styles.heading}>{trip.tripPlan?.trip?.destination}</Text>
+        <Text style={styles.heading}>{trip.tripPlan?.destination}</Text>
         <Text style={styles.text}>
           {moment(trip.tripData?.startDate).format("DD MMM YYYY")}
         </Text>
-        <Text style={styles.text}>
-          Travelling: {trip.tripPlan?.trip?.traveler}
-        </Text>
+        <Text style={styles.text}>Travelling: {trip.tripPlan?.traveller}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
