@@ -14,7 +14,7 @@ export default function ItineraryCard({ place, index }) {
 
   const GetGooglePhotoRef = async () => {
     try {
-      const result = await GetPhotoRef(place.location);
+      const result = await GetPhotoRef(place.place_name);
       console.log("Google Photo Result:", JSON.stringify(result, null, 2)); // Log the entire result
 
       if (result && result.results && result.results.length > 0) {
@@ -47,9 +47,9 @@ export default function ItineraryCard({ place, index }) {
         />
       )}
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{place.location}</Text>
-        <Text style={styles.desc}>{place.details}</Text>
-        <Text style={styles.time}>🕰️ {place.time}</Text>
+        <Text style={styles.title}>{place.place_name}</Text>
+        <Text style={styles.desc}>{place.place_details}</Text>
+        <Text style={styles.time}>🕰️ {place.estimated_time}</Text>
       </View>
     </View>
   );
