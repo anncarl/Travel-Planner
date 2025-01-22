@@ -45,17 +45,17 @@ export default function TripData() {
           {moment(tripDetails.tripData?.endDate).format("DD MMM YYYY")}
         </Text>
         <Text style={styles.text}>
-          🚌 {tripDetails.tripPlan?.trip?.traveler}
+          🚌 {tripDetails.tripPlan?.trip?.travelers}
         </Text>
 
         {/* Flight Details */}
-        <Flight flightData={tripDetails.tripPlan?.trip?.flight} />
+        <Flight flightData={tripDetails.tripPlan?.flight} />
 
         {/* Hotel List */}
-        <Hotels hotelData={tripDetails.tripPlan?.trip?.hotel} />
+        <Hotels hotelData={tripDetails.tripPlan?.hotel} />
 
         {/* Trip Day Planner Info */}
-        <Itenirary details={tripDetails.tripPlan?.trip?.itinerary} />
+        <Itenirary details={tripDetails.tripPlan?.itinerary} />
       </View>
     </ScrollView>
   );
