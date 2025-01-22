@@ -31,7 +31,7 @@ export default function UserTripsList({ userTrips }) {
       </View>
       <View style={{ marginTop: 15 }}>
         <Text style={styles.destination}>
-          {userTrips[0]?.tripPlan?.trip?.destination}
+          {userTrips[0]?.tripPlan?.destination}
         </Text>
         <View style={styles.textContainer}>
           <Text style={styles.text}>
@@ -39,7 +39,7 @@ export default function UserTripsList({ userTrips }) {
           </Text>
           <Text style={styles.text}>
             🚌 {"  "}
-            {userTrips[0]?.tripPlan.trip?.traveler}
+            {userTrips[0]?.tripPlan?.traveller}
           </Text>
         </View>
         <ButtonFull
@@ -57,7 +57,18 @@ export default function UserTripsList({ userTrips }) {
         </ButtonFull>
       </View>
       {userTrips.map((trip, index) => (
-        <TripCards trip={trip} key={index} />
+        <TripCards
+          trip={trip}
+          key={index}
+          onPress={() =>
+            router.push({
+              pathname: "/travel-details/tripData",
+              params: {
+                trip: JSON.stringify(trip),
+              },
+            })
+          }
+        />
       ))}
     </View>
   );
