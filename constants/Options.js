@@ -59,5 +59,56 @@ export const BudgetOptions = [
 // export const AI_PROMPT =
 //   "Generate travel plan for location: {location}, for {totalDays} Days and {totalNights} Night for {traveller} with a {budget} budget. Include the following information:Flight Details: Approximate flight price, Booking URL.Hotel Options: Hotel name, Hotel address, Approximate price per night, Hotel image URL, Geo coordinates, Rating, Description, Places to visit nearby. Itinerary which is a suggested day plan: Place name, Place image URL, Geo coordinates, Place details, Ticket pricing, Estimated time for exploration, Focus on best times to visit each location. Exclude arrival, departure plans, lunch and dinner plans in JSON Format.";
 
-export const AI_PROMPT =
-  "Generate travel plan for location: {location}, for {totalDays} Days and {totalNights} Night for {traveller} with a {budget} budget. Include the following information:Flight Details: Approximate flight price, Booking URL.Hotel Options: Hotel name, Hotel address, Approximate price per night, Hotel image URL, Geo coordinates, Rating, Description. Itinerary which is a suggested day plan: Place name, Place image URL, Geo coordinates, Place details, Ticket pricing, Estimated time for exploration, Focus on best times to visit each location. Exclude arrival, departure plans, lunch and dinner plans in JSON Format.";
+// export const AI_PROMPT =
+//   "Generate travel plan for location: {location}, for {totalDays} Days and {totalNights} Night for {traveller} with a {budget} budget. Include the following information:Flight Details: Approximate flight price, Booking URL.Hotel Options: Hotel name, Hotel address, Approximate price per night, Hotel image URL, Geo coordinates, Rating, Description. Itinerary which is a suggested day plan: Place name, Place image URL, Geo coordinates, Place details, Ticket pricing, Estimated time for exploration, Focus on best times to visit each location. Exclude arrival, departure plans, lunch and dinner plans in JSON Format.";
+
+export const AI_PROMPT = `
+Generate travel plan for location: {location}, for {totalDays} Days and {totalNights} Night for {traveller} with a {budget} budget. Include the following information and ensure the JSON :
+structure should strictly follow this format:
+
+{
+  "budget": {budget},
+  "destination": {location},
+  "duration": {totalDays} Days and {totalNights} Nights
+  "traveller": {traveler},
+  "flight": {
+    "booking_url": "URL to book the flight as a string",
+    "details": "Details about the flight route, including departure and arrival airports",
+    "price": "Price range or placeholder if price is unavailable"
+  },
+  "hotel": [
+    {
+      "name": "Hotel name as a string",
+      "address": "Hotel address as a string",
+      "description": "Short description of the hotel and its features",
+      "geo_coordinates": "Coordinates as a string (latitude, longitude)",
+      "image_url": "URL of the hotel image",
+      "price": "Price range for the hotel (e.g., '$100 - $200')",
+      "rating": "Hotel rating as a number (e.g., 4.5)"
+    }
+  ],
+  "itinerary": [
+    {
+      "day": "Day number as a number",
+      "schedule": [
+        {
+          "place_name": "Name of the place (e.g., 'Spice Tour')",
+          "place_details": "Description of the activity or what visitors can expect",
+          "geo_coordinates": "Coordinates as a string (latitude, longitude)",
+          "place_image_url": "URL of the place image",
+          "ticket_pricing": "Cost of tickets as a string or 'Free' if free",
+          "best_time_to_visit": "Optimal time to visit (e.g., 'Morning or late afternoon to avoid the heat')",
+          "estimated_time": "Estimated duration at the location (e.g., '3-4 hours')"
+        }
+      ]
+    }
+  ]
+}
+
+Instructions:
+1. Ensure strict adherence to the format provided for all sections to avoid breaking the output. All fields are required, even if some values are placeholders.
+2. The flight section must include a booking_url, general details, and price.
+3. The hotel section must be an array.
+4. The itinerary section must include day-wise plans with all specified details for each location.
+5. In the itinerary please also do not include arrival, departure plans, lunch and dinner plans.
+`;
