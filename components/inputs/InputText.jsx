@@ -16,7 +16,7 @@ export default function InputText({
 }) {
   return (
     <View>
-      <Text>TextInput</Text>
+      <Text style={styles.text}>{label}</Text>
       <TextInput
         style={styles.inputBox}
         autoCorrect={false}
@@ -41,5 +41,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderWidth: 1,
     borderColor: "#E0E0E0",
+    fontSize: 16,
+    fontFamily: "regular",
+  },
+  text: {
+    fontSize: 18,
+    fontFamily: "medium",
+    marginVertical: 10,
+    color: "#333",
   },
 });
