@@ -33,7 +33,7 @@ export default function signup() {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         router.replace("/mytrip");
         // ...
       })
@@ -51,14 +51,17 @@ export default function signup() {
       </Text>
 
       <InputText
+        label={"Full Name"}
         placeholder={"Enter your full name"}
         onChangeText={(value) => setFullName(value)}
       />
       <InputText
+        label={"Email Address"}
         placeholder={"Enter your email"}
         onChangeText={(value) => setEmail(value)}
       />
       <InputText
+        label={"Password"}
         placeholder={"Enter your password"}
         secureTextEntry
         onChangeText={(value) => setPassword(value)}

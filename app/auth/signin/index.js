@@ -32,7 +32,7 @@ export default function SignIn() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("user logged in successfully", user);
+        // console.log("user logged in successfully", user);
         router.replace("/mytrip");
         // ...
       })
@@ -56,17 +56,19 @@ export default function SignIn() {
       </Text>
 
       <InputText
+        label={"Email Address"}
         placeholder={"Enter your email"}
         onChangeText={(value) => setEmail(value)}
       />
       <InputText
+        label={"Password"}
         placeholder={"Enter your password"}
         secureTextEntry
         onChangeText={(value) => setPassword(value)}
       />
 
       <ButtonFull
-        style={{ marginVertical: 20, marginTop: 80 }}
+        style={{ marginVertical: 20, marginTop: 60 }}
         onPress={onSignIn}
       >
         Sign In
