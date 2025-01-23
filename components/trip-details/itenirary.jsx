@@ -8,11 +8,11 @@ import ItineraryCard from "./itineraryCard";
 export default function Itenirary({ details }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>🏕️ Plan Details</Text>
+      <Text style={styles.heading}>🏕️ Plan Details:</Text>
       {details &&
         Object.entries(details).map(([day, details], index) => (
           <View key={day}>
-            <Text style={styles.days}>{`Day ${index + 1}`}</Text>
+            <Text style={styles.text}>{`Day ${index + 1}`}</Text>
             {details?.schedule &&
               details?.schedule?.map((place, index) => (
                 <ItineraryCard place={place} index={index} />
@@ -29,12 +29,13 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontFamily: "medium",
-    fontSize: 18,
+    fontSize: 22,
     marginVertical: 5,
+    textTransform: "uppercase",
   },
   text: {
-    fontFamily: "regular",
-    fontSize: 14,
+    fontFamily: "medium",
+    fontSize: 18,
     color: "#333",
   },
 });

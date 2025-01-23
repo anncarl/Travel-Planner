@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { GetPhotoRef } from "../../services/GooglePlaceApi";
+import { Colors } from "../../constants/Colors";
 
 export default function HotelCard({ item }) {
   const [photoRef, setPhotoRef] = useState("");
@@ -52,9 +53,9 @@ export default function HotelCard({ item }) {
               style={styles.image}
             /> */}
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{item.name}</Text>
-        <Text style={styles.text}>{item.address}</Text>
-        <Text style={styles.text}>{item.price}</Text>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.desc}>{item.address}</Text>
+        <Text style={styles.price}>{item.price}</Text>
         <Text style={styles.text}>⭐️ {item.rating}</Text>
       </View>
     </View>
@@ -62,11 +63,6 @@ export default function HotelCard({ item }) {
 }
 
 const styles = {
-  text: {
-    fontFamily: "regular",
-    fontSize: 14,
-    color: "#333",
-  },
   innerContainer: {
     marginRight: 15,
   },
@@ -86,5 +82,27 @@ const styles = {
     borderBottomStartRadius: 10,
     borderBottomEndRadius: 10,
     width: "100%",
+  },
+  name: {
+    fontFamily: "medium",
+    fontSize: 22,
+    color: "#333",
+    marginVertical: 5,
+  },
+  desc: {
+    fontFamily: "regular",
+    fontSize: 18,
+    color: "#333",
+    marginBottom: 5,
+  },
+  price: {
+    fontFamily: "medium",
+    fontSize: 16,
+    color: Colors.main,
+    marginBottom: 5,
+  },
+  text: {
+    fontFamily: "regular",
+    fontSize: 16,
   },
 };

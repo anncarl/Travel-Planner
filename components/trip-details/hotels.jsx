@@ -5,7 +5,7 @@ import HotelCard from "./HotelCard";
 export default function Hotels({ hotelData }) {
   return (
     <View>
-      <Text style={styles.title}>🏨 Recommended Hotels</Text>
+      <Text style={styles.title}>🏨 Recommended Hotels:</Text>
       <FlatList
         data={hotelData}
         renderItem={({ item, index }) => <HotelCard item={item} />}
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "medium",
-    fontSize: 18,
+    fontSize: 22,
     marginVertical: 5,
+    textTransform: "uppercase",
   },
 });

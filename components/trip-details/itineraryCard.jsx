@@ -49,7 +49,7 @@ export default function ItineraryCard({ place, index }) {
       <View style={styles.textContainer}>
         <Text style={styles.title}>{place.place_name}</Text>
         <Text style={styles.desc}>{place.place_details}</Text>
-        <Text style={styles.time}>🕰️ {place.estimated_time}</Text>
+        <Text style={styles.time}>🕰️ {place.best_time_to_visit}</Text>
       </View>
     </View>
   );
@@ -76,18 +76,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "medium",
-    fontSize: 18,
+    fontSize: 22,
     marginVertical: 5,
   },
   desc: {
     fontFamily: "regular",
-    fontSize: 14,
+    fontSize: 16,
     color: "#333",
     marginBottom: 5,
   },
   time: {
     fontFamily: "medium",
-    fontSize: 14,
+    fontSize: 16,
     color: "#333",
   },
   days: {
