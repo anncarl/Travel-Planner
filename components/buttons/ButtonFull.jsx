@@ -4,7 +4,14 @@ import { Colors } from "@/constants/Colors";
 
 export default function ButtonFull({ children, onPress, style }) {
   return (
-    <Pressable style={[styles.button, style]} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.button,
+        pressed && styles.buttonPressed,
+        style, // Add pressed effect
+      ]}
+      onPress={onPress}
+    >
       <Text style={styles.text}>{children}</Text>
     </Pressable>
   );
@@ -16,6 +23,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: "100%",
     alignSelf: "center",
+  },
+  buttonPressed: {
+    opacity: 0.5,
   },
   text: {
     color: "white",
