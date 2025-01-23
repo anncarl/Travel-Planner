@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import {
   Ionicons,
@@ -8,6 +8,7 @@ import {
   AntDesign,
   MaterialIcons,
 } from "@expo/vector-icons";
+import SettingsItem from "./SettingsItem";
 
 const iconLibraries = {
   Ionicons,
@@ -18,33 +19,48 @@ const iconLibraries = {
   MaterialIcons,
 };
 
-export default function SettingsCard({ children, iconLibrary, iconName }) {
+export default function SettingsCard({
+  children,
+  title,
+  iconLibrary,
+  iconName,
+  onPress,
+}) {
   const IconComponent = iconLibraries[iconLibrary] || Ionicons;
   return (
     <View style={styles.outer}>
-      <View style={styles.inner}>
+      <View style={styles.titleContainer}>
         <IconComponent
           name={iconName}
           size={24}
-          color="black"
+          color="#333"
           style={styles.icon}
         />
-        <Text>{children}</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
-      <AntDesign name="right" size={24} color="black" />
+      <View style={styles.line}></View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   outer: {
-    flexDirection: "row",
     justifyContent: "space-between",
   },
-  inner: {
+  titleContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: "bold",
+  },
+  line: {
+    height: 1,
+    width: "100%",
+    backgroundColor: "#33333380",
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
   icon: {
     marginRight: 10,
