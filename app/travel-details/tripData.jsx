@@ -44,9 +44,7 @@ export default function TripData() {
           {moment(tripDetails.tripData?.startDate).format("DD MMM YYYY")} -{" "}
           {moment(tripDetails.tripData?.endDate).format("DD MMM YYYY")}
         </Text>
-        <Text style={styles.text}>
-          🚌 {tripDetails.tripPlan?.trip?.travelers}
-        </Text>
+        <Text style={styles.text}>🚌 {tripDetails.tripPlan?.traveller}</Text>
 
         {/* Flight Details */}
         <Flight flightData={tripDetails.tripPlan?.flight} />
