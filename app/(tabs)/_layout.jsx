@@ -5,13 +5,17 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 import { Colors } from "../../constants/Colors";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function TabLayout() {
+  const { themeStyles } = useTheme();
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: Colors.black,
+        tabBarActiveTintColor: themeStyles.tabIconSelected,
+        tabBarInactiveTintColor: themeStyles.tabIconDefault,
+        tabBarStyle: { backgroundColor: themeStyles.background },
       }}
     >
       <Tabs.Screen

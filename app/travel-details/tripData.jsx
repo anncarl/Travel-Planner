@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, StatusBar } from "react-native";
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native";
@@ -26,40 +26,52 @@ export default function TripData() {
   }, []);
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
-    >
-      <Image
-        source={{
-          uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${tripDetails.tripData?.locationInfo?.photo}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
-        }}
-        style={styles.image}
+    <View style={styles.safeContainer}>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
       />
-      <View style={styles.innerContainer}>
-        <Text style={styles.title}>
-          {tripDetails.tripPlan?.trip?.destination}
-        </Text>
-        <Text style={styles.text}>
-          {moment(tripDetails.tripData?.startDate).format("DD MMM YYYY")} -{" "}
-          {moment(tripDetails.tripData?.endDate).format("DD MMM YYYY")}
-        </Text>
-        <Text style={styles.text}>🚌 {tripDetails.tripPlan?.traveller}</Text>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <Image
+          source={{
+            uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${tripDetails.tripData?.locationInfo?.photo}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
+          }}
+          style={styles.image}
+        />
+        <View style={styles.innerContainer}>
+          <Text style={styles.title}>
+            {tripDetails.tripPlan?.trip?.destination}
+          </Text>
+          <Text style={styles.text}>
+            {moment(tripDetails.tripData?.startDate).format("DD MMM YYYY")} -{" "}
+            {moment(tripDetails.tripData?.endDate).format("DD MMM YYYY")}
+          </Text>
+          <Text style={styles.text}>🚌 {tripDetails.tripPlan?.traveller}</Text>
 
-        {/* Flight Details */}
-        <Flight flightData={tripDetails.tripPlan?.flight} />
+          {/* Flight Details */}
+          <Flight flightData={tripDetails.tripPlan?.flight} />
 
-        {/* Hotel List */}
-        <Hotels hotelData={tripDetails.tripPlan?.hotel} />
+          {/* Hotel List */}
+          <Hotels hotelData={tripDetails.tripPlan?.hotel} />
 
-        {/* Trip Day Planner Info */}
-        <Itenirary details={tripDetails.tripPlan?.itinerary} />
-      </View>
-    </ScrollView>
+          {/* Trip Day Planner Info */}
+          <Itenirary details={tripDetails.tripPlan?.itinerary} />
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight, // Ensures content starts below the status bar
+    backgroundColor: "#fff",
+  },
   container: {
     flexGrow: 1,
     backgroundColor: "#fff",

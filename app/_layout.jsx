@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { CreateTripContext } from "../context/CreateTripContext";
 import { useState } from "react";
+import { ThemeProvider } from "../context/ThemeContext";
 
 export default function RootLayout() {
   useFonts({
@@ -13,11 +14,13 @@ export default function RootLayout() {
   const [tripData, setTripData] = useState([]);
 
   return (
-    <CreateTripContext.Provider value={{ tripData, setTripData }}>
-      <Stack screenOptions={{ headerShown: false }}>
-        {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
-        <Stack.Screen name="(tabs)" />
-      </Stack>
-    </CreateTripContext.Provider>
+    <ThemeProvider>
+      <CreateTripContext.Provider value={{ tripData, setTripData }}>
+        <Stack screenOptions={{ headerShown: false }}>
+          {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
+          <Stack.Screen name="(tabs)" />
+        </Stack>
+      </CreateTripContext.Provider>
+    </ThemeProvider>
   );
 }

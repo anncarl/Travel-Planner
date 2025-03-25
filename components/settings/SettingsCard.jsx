@@ -9,6 +9,7 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import SettingsItem from "./SettingsItem";
+import { useTheme } from "../../context/ThemeContext";
 
 const iconLibraries = {
   Ionicons,
@@ -27,18 +28,30 @@ export default function SettingsCard({
   onPress,
 }) {
   const IconComponent = iconLibraries[iconLibrary] || Ionicons;
+  const { themeStyles } = useTheme();
   return (
     <View style={styles.outer}>
       <View style={styles.titleContainer}>
         <IconComponent
           name={iconName}
           size={24}
-          color="#333"
+          color={themeStyles.icon}
           style={styles.icon}
         />
-        <Text style={styles.title}>{title}</Text>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: themeStyles.text,
+            },
+          ]}
+        >
+          {title}
+        </Text>
       </View>
-      <View style={styles.line}></View>
+      <View
+        style={[styles.line, { backgroundColor: themeStyles.accent }]}
+      ></View>
     </View>
   );
 }
@@ -58,7 +71,7 @@ const styles = StyleSheet.create({
   line: {
     height: 1,
     width: "100%",
-    backgroundColor: "#33333380",
+    // backgroundColor: "#33333380",
     marginVertical: 10,
     marginHorizontal: 10,
   },
